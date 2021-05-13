@@ -8,3 +8,8 @@ https://devyurim.github.io/python/crawler/2018/08/13/crawler-3.html
 
 추출할 url
 http://search.khan.co.kr/search.html?stb=khan&q=%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%82%A0
+
+날짜 관련 설치 패키지
+pip install python-dateutil
+bs4 설치 패키지
+pip install bs4
