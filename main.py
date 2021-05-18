@@ -32,7 +32,7 @@ def delay(ms=wait_time):
 
 for i in range(0, 1):
     # 추출할 url
-    main_url = "http://search.khan.co.kr/search.html?" \
+    main_url = "https://search.khan.co.kr/search.html?" \
                "stb=khan&dm=3&pg={}&d1={}~{}&q=%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%82%A0".\
                 format(page, prev_date, now_date)
 
@@ -47,24 +47,26 @@ for i in range(0, 1):
         dv.switch_to.window(window_name=tab)
 
         '''                     추출                      '''
-        title = dv.find_element_by_css_selector('h1.headline').size
-        author = dv.find_element_by_css_selector('span.name').text
-        author = str(author).split(' ')[0]
-        t_day = dv.find_elements_by_css_selector('div.pagecontrol > div.byline > em')
-        write_day, mod_day = t_day[0].text, t_day[1].text if len(t_day) != 1 else ''
+        try:
+            title = dv.find_element_by_css_selector('h1.headline').text
+            author = dv.find_element_by_css_selector('span.name').text
+            author = str(author).split(' ')[0]
+            t_day = dv.find_elements_by_css_selector('div.pagecontrol > div.byline > em')
+            write_day, mod_day = t_day[0].text, t_day[1].text if len(t_day) != 1 else ''
 
-        write_day = day_reg.findall(write_day)[0]
-        mod_day = day_reg.findall(mod_day)[0] if len(t_day) != 1 else ''
-        t_content = dv.find_elements_by_css_selector('div.art_cont > div.art_body > p.content_text')
-        content = ''.join([tmp.text for tmp in t_content])
+            write_day = day_reg.findall(write_day)[0]
+            mod_day = day_reg.findall(mod_day)[0] if len(t_day) != 1 else ''
+            t_content = dv.find_elements_by_css_selector('div.art_cont > div.art_body > p.content_text')
+            content = ''.join([tmp.text for tmp in t_content])
 
-        print_msg = "{} {} {} {}".format(title, author, write_day, mod_day)
-        print(print_msg)
-        dv.close()
-        tab = dv.window_handles[0]
-        dv.switch_to.window(window_name=tab)
-
-
+            print_msg = "{} {} {} {}".format(title, author, write_day, mod_day)
+            print(print_msg)
+            dv.close()
+        except Exception as ex:
+            continue
+        finally:
+            tab = dv.window_handles[0]
+            dv.switch_to.window(window_name=tab)
 
 '''
 delay()
