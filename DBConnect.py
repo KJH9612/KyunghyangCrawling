@@ -17,9 +17,9 @@ class Singleton(type):
 class Database(metaclass=Singleton):
     def __init__(self, dbName):
         self.db = pymysql.connect(
-            user='root',
-            password='qwedf823!@#',
-            host='127.0.0.1',
+            user='DB ID',
+            password='DB Password',
+            host='DB Host',
             database=dbName,
         )
         self.cursor = self.db.cursor(pymysql.cursors.DictCursor)
