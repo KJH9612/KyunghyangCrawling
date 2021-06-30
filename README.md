@@ -11,7 +11,7 @@ pip install PyMySQL
 ```
 
 ## Chrome Driver
-Download the appropriate driver version for the Chrome browser and place it in the "exe" directory.
+Download the appropriate driver version for the Chrome browser and place it in the "exe" directory. \
 This project uses version 90.0.4430
 [DriverDownloadLink](https://chromedriver.chromium.org/downloads)
 
